@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext'
-import logo from '../assets/LogoCoomapCompleto.png'
-import fundoLogin from '../assets/FundoLogin.png'
+import { useAuth } from '../../context/AuthContext'
+import logo from '../../assets/LogoCoomapCompleto.png'
+import fundoLogin from '../../assets/FundoLogin.png'
 
 type AlertType = 'error' | 'not-authenticated' | 'password-changed' | null
 
@@ -24,7 +24,7 @@ export default function Login({ alertInicial = null }: LoginProps) {
     setCarregando(true)
     try {
       await login(usuario, senha)
-      navigate('/')
+      navigate('/admin/home')
     } catch {
       setAlert('error')
     } finally {
@@ -83,7 +83,7 @@ export default function Login({ alertInicial = null }: LoginProps) {
                   id="username"
                   name="username"
                   style={s.input}
-                  placeholder="E-mail"
+                  placeholder="Usuário"
                   value={usuario}
                   onChange={(e) => setUsuario(e.target.value)}
                   required
@@ -107,13 +107,13 @@ export default function Login({ alertInicial = null }: LoginProps) {
                 style={s.button}
                 onMouseEnter={(e) => {
                   const btn = e.currentTarget
-                  btn.style.backgroundColor = '#28a745'
+                  btn.style.backgroundColor = '#4caf50'
                   btn.style.color = '#fff'
                 }}
                 onMouseLeave={(e) => {
                   const btn = e.currentTarget
                   btn.style.backgroundColor = 'transparent'
-                  btn.style.color = '#28a745'
+                  btn.style.color = '#4caf50'
                 }}
               >
                 🔓 {carregando ? 'Entrando...' : 'Login'}
@@ -139,12 +139,8 @@ const s: Record<string, React.CSSProperties> = {
     justifyContent: 'center',
     fontFamily: '"Source Sans Pro", "Helvetica Neue", Arial, sans-serif',
   },
-  loginBox: {
-    width: 360,
-  },
-  card: {
-    backgroundColor: 'transparent',
-  },
+  loginBox: { width: 360 },
+  card: { backgroundColor: 'transparent' },
   alertCard: {
     display: 'flex',
     marginBottom: 16,
@@ -176,40 +172,13 @@ const s: Record<string, React.CSSProperties> = {
     background: 'linear-gradient(to right, #2980b9, #1a6496)',
     flex: 1,
   },
-  alertIcon: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 13,
-  },
-  alertText: {
-    color: 'white',
-    margin: 0,
-    fontSize: 15,
-    fontWeight: 400,
-  },
-  cardHeader: {
-    textAlign: 'center',
-    padding: '16px 0',
-  },
-  logo: {
-    width: 160,
-    height: 120,
-    objectFit: 'contain',
-  },
-  title: {
-    color: 'white',
-    fontSize: 50,
-    margin: '4px 0 0',
-    lineHeight: 1.2,
-  },
-  cardBody: {
-    padding: '4px 0 16px',
-  },
-  fieldset: {
-    border: 'none',
-    padding: 0,
-    margin: '0 0 16px',
-  },
+  alertIcon: { color: 'white', fontWeight: 'bold', fontSize: 13 },
+  alertText: { color: 'white', margin: 0, fontSize: 15, fontWeight: 400 },
+  cardHeader: { textAlign: 'center', padding: '16px 0' },
+  logo: { width: 160, height: 120, objectFit: 'contain' },
+  title: { color: 'white', fontSize: 50, margin: '4px 0 0', lineHeight: 1.2 },
+  cardBody: { padding: '4px 0 16px' },
+  fieldset: { border: 'none', padding: 0, margin: '0 0 16px' },
   input: {
     width: '100%',
     padding: '8px 12px',
@@ -226,8 +195,8 @@ const s: Record<string, React.CSSProperties> = {
     padding: '10px 0',
     fontSize: 15,
     borderRadius: 4,
-    border: '1px solid #28a745',
-    color: '#28a745',
+    border: '1px solid #4caf50',
+    color: '#4caf50',
     backgroundColor: 'transparent',
     cursor: 'pointer',
     marginTop: 8,

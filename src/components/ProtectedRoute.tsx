@@ -4,5 +4,5 @@ import { useAuth } from '../context/AuthContext'
 
 export default function ProtectedRoute({ children }: { children: ReactNode }) {
   const { autenticado } = useAuth()
-  return autenticado ? <>{children}</> : <Navigate to="/login" replace />
+  return autenticado ? <>{children}</> : <Navigate to="/admin/login" replace />
 }
